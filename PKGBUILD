@@ -1,7 +1,6 @@
-# Maintainer: DarkXero
+# Maintainer: David7ce
 
 pkgname=calamares-app
-_pkgname=calamares
 pkgver=3.3.0.230306
 pkgrel=1
 pkgdesc='Distribution-independent installer framework'
@@ -25,9 +24,6 @@ sha256sums=('SKIP')
 prepare() {
 	cd ${srcdir}/$pkgname
 	sed -i -e 's/Install packages/Updating System (Might Take a While...)/' "$srcdir/${pkgname}/src/modules/packages/main.py"
-	#sed -i 's/,\ self.line_cb//g'  "$srcdir/${_pkgname}-${pkgver}/src/modules/packages/main.py"
-
-	# patches here
 
 	# change version
 	_ver="$(cat CMakeLists.txt | grep -m3 -e "  VERSION" | grep -o "[[:digit:]]*" | xargs | sed s'/ /./g')"
@@ -61,8 +57,8 @@ build() {
 package() {
 	cd ${srcdir}/$pkgname/build
 	make DESTDIR="$pkgdir" install
-	rm "${srcdir}/$pkgname/calamares.desktop"
-	rm "$pkgdir/usr/share/applications/calamares.desktop"
+	#rm "${srcdir}/$pkgname/calamares.desktop"
+	#rm "$pkgdir/usr/share/applications/calamares.desktop"
 	#install -Dm644 "../data/manjaro-icon.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/calamares.svg"
 	#install -Dm644 "../data/calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
 	#install -Dm755 "../data/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
@@ -72,6 +68,6 @@ package() {
 	# rename services-systemd back to services
 	#mv "$pkgdir/usr/lib/calamares/modules/services-systemd" "$pkgdir/usr/lib/calamares/modules/services"
 	#mv "$pkgdir/usr/share/calamares/modules/services-systemd.conf" "$pkgdir/usr/share/calamares/modules/services.conf"
-	#sed -i -e 's/-systemd//' "$pkgdir/usr/lib/calamares/modules/services/module.desc"
-	#sed -i -e 's/-systemd//' "$pkgdir/usr/share/calamares/settings.conf"
+	#sed -i -e 's/-systemd/' "$pkgdir/usr/lib/calamares/modules/services/module.desc"
+	#sed -i -e 's/-systemd/' "$pkgdir/usr/share/calamares/settings.conf"
 }
