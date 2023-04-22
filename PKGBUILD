@@ -57,8 +57,8 @@ build() {
 package() {
 	cd ${srcdir}/$pkgname/build
 	make DESTDIR="$pkgdir" install
-	#rm "${srcdir}/$pkgname/calamares.desktop"
-	#rm "$pkgdir/usr/share/applications/calamares.desktop"
+	rm "${srcdir}/$pkgname/calamares.desktop"
+	rm "$pkgdir/usr/share/applications/calamares.desktop"
 	#install -Dm644 "../data/manjaro-icon.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/calamares.svg"
 	#install -Dm644 "../data/calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
 	#install -Dm755 "../data/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
