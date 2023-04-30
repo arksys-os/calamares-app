@@ -1,2 +1,2 @@
 # Calamares app
-Calamares installer pkgbuild.
+Calamares installer pkgbuild. To build the app run build.sh
